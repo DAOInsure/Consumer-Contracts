@@ -38,13 +38,16 @@ contract WeatherApi is ChainlinkClient {
      * Create a Chainlink request to retrieve API response, find the target
      * data, then multiply by 1000000000000000000 (to remove decimal places from data).
      */
-    function requestWeatherData() public returns (bytes32 requestId) 
+    function requestWeatherData(uint256 _lat, uint256 _lon, uint256 _dt) public returns (bytes32 requestId) 
     {
         Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
         
         // Set the URL to perform the GET request on
-        request.add("get", "https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=19.0434&lon=72.8593&dt=1626840053&appid=d1faee1b8f1d93501e75d2ec9b4e7634");
-        
+        // request.add("get", "https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=19.0434&lon=72.8593&dt=1626840053&appid=d1faee1b8f1d93501e75d2ec9b4e7634");
+        request.add("lat", "_lat");
+        request.add("lon", "_lon");
+        request.add("dt", "_dt");
+
         // Set the path to find the desired data in the API response, where the response format is:
         // {"RAW":
         //   {"ETH":
