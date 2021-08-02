@@ -12,7 +12,7 @@ contract WeatherApi is ChainlinkClient {
     uint256 private fee;
 
     constructor() public {
-        setPublicChainlinkToken();
+        setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
         
         oracle = 0xc8D925525CA8759812d0c299B90247917d4d4b7C;
         
@@ -31,7 +31,7 @@ contract WeatherApi is ChainlinkClient {
         request.add("dt", "_dt");
 
         
-        request.add("path", "hourly.0.rain.1h"); // rain in mm
+        // request.add("path", "hourly.0.rain.1h"); // rain in mm
 
         
         // Multiply the result by 1000000000000000000 to remove decimals
