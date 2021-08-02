@@ -31,7 +31,7 @@ contract WeatherApi is ChainlinkClient {
         oracle = 0xD68D6Cd020F28587A9Ec75F253BF064300f2F9FB;
         
         jobId = "60e2c69193d34f5baae75d2c4e9fb898";
-        fee = 0.1 * 10 ** 18; // (Varies by network and job)
+        fee = 0.01 * 10 ** 18; // (Varies by network and job)
     }
     
     /**
