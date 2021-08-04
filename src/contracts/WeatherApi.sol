@@ -28,7 +28,7 @@ contract WeatherApi is ChainlinkClient {
         request.add("lat", _lat);
         request.add("lon", _lon);
         request.add("dt", _dt);
-
+        request.addInt("times", 100);
 
         // request.add("path", "hourly.6.rain.1h"); // rain in mm  not sure if we can add this
 
@@ -36,14 +36,12 @@ contract WeatherApi is ChainlinkClient {
         // Multiply the result by 1000000000000000000 to remove decimals
         // int timesAmount = 10**18;
         // request.addInt("times", timesAmount);
-
+        
         // Sends the request
         return sendChainlinkRequestTo(oracle, request, fee);
     }
 
-    /
-     * Receive the response in the form of uint256
-     */ 
+
     function fulfill(bytes32 _requestId, uint256 _rain) public recordChainlinkFulfillment(_requestId)
     {
         rain = _rain;
